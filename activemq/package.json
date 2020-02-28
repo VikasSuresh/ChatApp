@@ -1,0 +1,17 @@
+{
+  "name": "activemq",
+  "version": "1.0.0",
+  "description": "",
+  "main": "accessingActiveMq.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "stomp-client": "^0.9.0",
+    "stompit": "^0.26.0",
+    "stompjs": "^2.3.3"
+  }
+}
