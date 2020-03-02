@@ -9,7 +9,7 @@ class App extends React.Component{
       <div>
           <Router>
               <Route exact path="/" component={Home} />
-              <Route exact path="/chat" component={Chat}/>
+              <Route exact path="/chat/:name?" component={Chat}/>
           </Router>
       </div>
     )
