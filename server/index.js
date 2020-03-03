@@ -5,7 +5,7 @@ const mongoose= require('mongoose');
 const Stomp=require('stompjs');
 const client=Stomp.overTCP('localhost',61613);
 const Message = require('./message');
-client.connect('vikas','vikas');
+client.connect({login:'vikas',passcode:'vikas'});
 
 mongoose.connect("mongodb://localhost:27017/chat",{useNewUrlParser:true,useUnifiedTopology:true})
     .then((c)=>console.log('Connected'))
@@ -27,7 +27,6 @@ io.on('connection',(socket)=>{
         message.save((err) => {
             if (err) return console.error(err);
           });
-          console.log(msg)
           var subscription=client.subscribe("/queue/test", (msg)=>{
                 socket.broadcast.emit('push',JSON.parse(msg.body))  
                 subscription.unsubscribe();

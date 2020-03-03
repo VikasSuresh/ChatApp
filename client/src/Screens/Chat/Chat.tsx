@@ -1,6 +1,7 @@
 import React from 'react';
 import io from "socket.io-client";
-// import Message from "../../Components/showMessage";
+import Messages from "../../Components/message/showMessage";
+import Show from "../../Components/message/show";
 const socket:any=io('http://localhost:8000');
 class Chat extends  React.Component<any,any>{
     constructor(props:any){
@@ -42,28 +43,12 @@ class Chat extends  React.Component<any,any>{
             })
     }
     render(){
+        var msgs:any = this.state.chat.map((el:any,index:any)=>(
+            <Show key={index} name={this.state.name} nameFromChat={el.name} contentFromChat={el.content} />
+        ))
         return(
             <div className='App'>
-                <div id='chat'>
-                    <ul>
-                        {this.state.chat.map((el:any,index:any)=>{
-                            return(
-                                <div key={index}>
-                                <li className="content">
-                                  {el.name}-
-                                  {el.content}
-                                </li>
-                              </div>
-                            )
-                        })}
-                    </ul>
-                    <div>
-                        <form onSubmit={this.submit} >
-                            <input onChange={this.handleContent.bind(this)} value={this.state.content} type="text"/><br/>
-                            <button type='submit'>Submit</button>
-                        </form>
-                    </div>
-                </div>
+               <Messages msgs={msgs} submit={this.submit} handleContent={this.handleContent.bind(this)} content={this.state.content}/>
             </div>
           
         )
